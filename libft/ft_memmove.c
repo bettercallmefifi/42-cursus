@@ -10,7 +10,7 @@ void	*ft_memmove(void *s1, const void *s2, size_t n)
 	if (!s1 || !s2)
 		return (NULL);
 	s = (const unsigned char *)s2;
-	d = (unsigned char *)s1;
+	d = (unsignedd char *)s1;
 	i = 0;
 	if (d < s)
 	{
