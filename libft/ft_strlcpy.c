@@ -1,17 +1,27 @@
-#include <libft.h>
-// #include <stddef.h>
-// #include <string.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: feel-idr <feel-idr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/16 12:30:24 by feel-idr          #+#    #+#             */
+/*   Updated: 2025/10/20 01:26:50 by feel-idr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t dsize)
+#include "libft.h"
+
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	size_t	srclen;
 	size_t	i;
+	size_t	srclen;
 
-	srclen = ft_strlen(src);
 	i = 0;
-	if (dsize == 0)
+	srclen = ft_strlen(src);
+	if (size == 0)
 		return (srclen);
-	while (src[i] && i < dsize - 1)
+	while (src[i] && i < size - 1)
 	{
 		dest[i] = src[i];
 		i++;
@@ -19,13 +29,3 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t dsize)
 	dest[i] = '\0';
 	return (srclen);
 }
-// #include <stdio.h>
-// int main()
-// {
-// 	char dest[20];
-// 	const char src[] = "ferdaous";
-// 	printf("%zu\n",ft_strlcpy(dest,src,6));
-// 	printf("%s\n",dest);
-// 	printf("%ld\n",strlen(dest));
-// 	return (0);
-// }

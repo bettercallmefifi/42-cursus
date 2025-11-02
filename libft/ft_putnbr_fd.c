@@ -1,30 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feel-idr <feel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/16 15:39:11 by feel-idr          #+#    #+#             */
-/*   Updated: 2025/10/20 11:36:16 by feel-idr         ###   ########.fr       */
+/*   Created: 2025/10/24 09:51:23 by feel-idr          #+#    #+#             */
+/*   Updated: 2025/10/24 11:12:38 by feel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	ft_putnbr_fd(int n, int fd)
 {
-	int	i;
+	char			rest[34];
+	long long int	nbr;
+	int				i;
 
-	i = ft_strlen(s);
-	if (s[i] == (char)c)
-		return ((char *)&s[i]);
-	i--;
-	while (i >= 0)
+	i = 0;
+	nbr = n;
+	if (nbr < 0)
 	{
-		if (s[i] == (char)c)
-			return ((char *)&s[i]);
-		i--;
+		write(fd, "-", 1);
+		nbr = nbr * -1;
 	}
-	return (NULL);
+	while (nbr >= 10)
+	{
+		rest[i] = nbr % 10 + '0';
+		nbr = nbr / 10;
+		i++;
+	}
+	if (nbr <= 9)
+		rest[i] = nbr + '0';
+	while (i >= 0)
+		write(fd, &rest[i--], 1);
 }

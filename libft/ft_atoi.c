@@ -1,28 +1,37 @@
-#include <libft.h>
-#include <limits.h>
-#include <stdio.h>
-//#include <stdlib.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: feel-idr <feel-idr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/18 12:52:45 by feel-idr          #+#    #+#             */
+/*   Updated: 2025/10/19 17:52:10 by feel-idr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int	ft_atoi(const char *nptr)
+#include "libft.h"
+
+int	ft_atoi(const char *str)
 {
-	int					i;
-	int					signe;
-	unsigned long long	result;
+	int			i;
+	int			signe;
+	long long	result;
 
 	i = 0;
-	result = 0;
 	signe = 1;
-	while (nptr[i] == ' ' || (nptr[i] >= 9 && nptr[i] <= 13))
+	result = 0;
+	while (str[i] && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
 		i++;
-	if (nptr[i] == '+' || nptr[i] == '-')
+	if (str[i] && (str[i] == '-' || str[i] == '+'))
 	{
-		if (nptr[i] == '-')
+		if (str[i] == '-')
 			signe *= -1;
 		i++;
 	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
 	{
-		result = (result * 10) + (nptr[i] - 48);
+		result = result * 10 + (str[i] - '0');
 		if (result >= LLONG_MAX && signe == -1)
 			return (0);
 		else if (result >= LLONG_MAX && signe == 1)
@@ -31,9 +40,3 @@ int	ft_atoi(const char *nptr)
 	}
 	return (signe * result);
 }
-
-// int main()
-// {
-// 	printf("%d\n",atoi("18446744073709551615"));
-// 	return (0);
-// }

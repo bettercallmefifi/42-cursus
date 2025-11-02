@@ -1,16 +1,25 @@
-#include <libft.h>
-//#include <stddef.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: feel-idr <feel-idr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/16 12:14:27 by feel-idr          #+#    #+#             */
+/*   Updated: 2025/10/20 11:37:21 by feel-idr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	*ft_memmove(void *s1, const void *s2, size_t n)
+#include "libft.h"
+
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	const unsigned char	*s;
-	unsigned char		*d;
-	size_t				i;
+	unsigned char	*d;
+	unsigned char	*s;
+	size_t			i;
 
-	if (!s1 || !s2)
-		return (NULL);
-	s = (const unsigned char *)s2;
-	d = (unsignedd char *)s1;
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
 	i = 0;
 	if (d < s)
 	{
@@ -20,15 +29,20 @@ void	*ft_memmove(void *s1, const void *s2, size_t n)
 			i++;
 		}
 	}
-	else
+	else if (d > s)
 	{
-		while (n--)
-			d[n] = s[n];
+		while (n > 0)
+		{
+			d[n - 1] = s[n - 1];
+			n--;
+		}
 	}
-	return (s1);
+	return (dest);
 }
 
 // #include <stdio.h>
+// #include <stddef.h>
+
 // int main()
 // {
 // 	char dest[20];

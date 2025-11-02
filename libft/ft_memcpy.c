@@ -1,32 +1,38 @@
-#include <libft.h>
-//#include <stddef.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: feel-idr <feel-idr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/16 12:08:16 by feel-idr          #+#    #+#             */
+/*   Updated: 2025/10/20 11:30:20 by feel-idr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	*ft_memcpy(void *dest, const void *src, size_t n)
+#include "libft.h"
+
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t				i;
-	unsigned char		*d;
-	const unsigned char	*s;
+	size_t	i;
 
-	if (!dest || !src)
-		return (NULL);
-	d = (unsigned char *) dest;
-	s = (const unsigned char *) src;
 	i = 0;
+	if (dst == NULL && src == NULL)
+		return (NULL);
 	while (i < n)
 	{
-		d[i] = s[i];
+		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
 		i++;
 	}
-	return (dest);
+	return (dst);
 }
 
-/*
-#include <stdio.h>
-
-int main()
-{
-	char dest[20];
-	ft_memcpy(dest,"ferdaous", 5);
-	printf("%s\n", dest);
-	return (0);
-}*/
+// #include <stdio.h>
+// int main()
+// {
+// 	char str[] = "ferdaous";
+// 	char dest[20];
+// 	ft_memcpy(dest, str, 8);
+// 	printf("%s\n",dest);
+// 	return (0);
+// }

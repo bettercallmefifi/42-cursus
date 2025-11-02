@@ -1,6 +1,16 @@
-#include <libft.h>
-// #include <string.h>
-//#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: feel-idr <feel-idr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/16 15:11:05 by feel-idr          #+#    #+#             */
+/*   Updated: 2025/10/20 11:36:25 by feel-idr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {
@@ -9,12 +19,10 @@ char	*ft_strchr(const char *s, int c)
 
 	i = 0;
 	h = (unsigned char)c;
-	if (!s)
-		return (NULL);
 	while (s[i])
 	{
 		if (s[i] == h)
-			return ((char *)(s + i));
+			return ((char *)s + i);
 		i++;
 	}
 	if (h == '\0')
@@ -22,8 +30,12 @@ char	*ft_strchr(const char *s, int c)
 	return (0);
 }
 
-// int main()
+// int	main()
 // {
-// 	printf("%s\n",ft_strchr("ferdaous",'a'));
+// 	char s[] = "ferdaous";
+// 	char *str = ft_strchr(s,'h');
+// 	if(!str)
+// 		return 0;
+// 	printf("%s\n",str);
 // 	return (0);
 // }

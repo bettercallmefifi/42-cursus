@@ -1,23 +1,25 @@
-#include <libft.h>
-//#include <unistd.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: feel-idr <feel-idr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/20 12:01:48 by feel-idr          #+#    #+#             */
+/*   Updated: 2025/10/24 11:11:39 by feel-idr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "libft.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	size_t	i;
+	int	i;
 
-	if (fd < 0 || !s)
-		return;
 	i = 0;
-	while (s[i])
+	while (s[i] != '\0')
 	{
 		write(fd, &s[i], 1);
 		i++;
 	}
 }
-
-// int main()
-// {
-// 	ft_putstr_fd("ferdaous",0);
-// 	write(1,"\n",1);
-// 	return (0);
-// }
