@@ -17,4 +17,9 @@ int	ft_check_print(const char *ptr, va_list list)
 		count += ft_print_unsigned(va_arg(ptr, unsigned int));
 	else if (*ptr == 'p')
 		count += ft_print_pointer((unsigned long long)(ptr, void *));
+	else if (form[i] == 'x')
+        count += ft_puthex(va_arg(params, unsigned int), 0);
+    else if (form[i] == 'X')
+        count += ft_puthex(va_arg(params, unsigned int), 1);
+	return (count);
 }
