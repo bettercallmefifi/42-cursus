@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_putchar.c                                 :+:      :+:    :+:   */
+/*   ft_print_hexadecimal.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feel-idr <feel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/07 16:04:07 by feel-idr          #+#    #+#             */
-/*   Updated: 2025/11/08 18:41:38 by feel-idr         ###   ########.fr       */
+/*   Created: 2025/11/08 18:32:19 by feel-idr          #+#    #+#             */
+/*   Updated: 2025/11/08 18:38:45 by feel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_putchar(int c, int fd)
+int	ft_print_hexadecimal(unsigned long long nbr, int flag)
 {
-	char	a;
+	char	*base;
+	int		count;
 
-	a = (char)c;
-	write(fd, &a, 1);
-	return (1);
+	count = 0;
+	if (flag)
+		base = "0123456789ABCDEF";
+	else
+		base = "0123456789abcdef";
+	if (nbr >= 16)
+		count += ft_print_hexadecimal(nbr / 16, flag);
+	count += ft_print_putchar(base[nbr % 16], 1);
+	return (count);
 }

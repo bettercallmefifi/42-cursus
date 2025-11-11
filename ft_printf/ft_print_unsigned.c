@@ -1,22 +1,49 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_putchar.c                                 :+:      :+:    :+:   */
+/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: feel-idr <feel-idr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/07 16:04:07 by feel-idr          #+#    #+#             */
-/*   Updated: 2025/11/08 18:41:38 by feel-idr         ###   ########.fr       */
+/*   Created: 2025/11/08 18:49:22 by feel-idr          #+#    #+#             */
+/*   Updated: 2025/11/08 18:49:23 by feel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_putchar(int c, int fd)
+int	len_unsigned(unsigned int nb)
 {
-	char	a;
+	int	i;
 
-	a = (char)c;
-	write(fd, &a, 1);
-	return (1);
+	i = 0;
+	if (nb == 0)
+		i++;
+	while (nb != 0)
+	{
+		nb = nb / 10;
+		i++;
+	}
+	return (i);
+}
+
+int	ft_print_unsigned(unsigned int n)
+{
+	int	nbr;
+	int	i;
+
+	i = 0;
+	nbr = n;
+	i = len_unsigned(n);
+	if (n < 10)
+	{
+		nbr = (n % 10) + '0';
+		ft_print_putchar(nbr, 1);
+	}
+	else
+	{
+		ft_print_unsigned(n / 10);
+		ft_print_unsigned(n % 10);
+	}
+	return (i);
 }
