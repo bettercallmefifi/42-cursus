@@ -1,23 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: feel-idr <feel-idr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/15 17:54:24 by feel-idr          #+#    #+#             */
+/*   Updated: 2025/11/15 17:54:25 by feel-idr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
 
-char	*ft_strdup(const char *s)
+char	*ft_strdub(char *str)
 {
-	char	*str;
-	size_t	i;
+	char	*src;
+	int		len;
+	int		i;
 
 	i = 0;
-	str = (char *)malloc (strlen(s) + 1);
-	if (!str)
-		return (NULL);
-	while (s[i])
+	len = ft_strlen(str);
+	src = (char *)malloc (len + 1);
+	while (len >= i)
 	{
-		str[i] = s[i];
+		src[i] = str[i];
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
+	return (src);
 }
-
 char	*ft_read_file(int fd, char *line_of_file)
 {
 	char	*line_added;
@@ -30,14 +40,14 @@ char	*ft_read_file(int fd, char *line_of_file)
 	while (i > 0)
 	{
 		i = read(fd, line_added, BUFFER_SIZE);
-		if ((line_of_file[0] == 0 && line_added[0] == 0) || i < 0)
+		if ((line_added[0] == 0 && line_of_file[0] == 0)|| i < 0)
 		{
 			free(line_added);
 			free(line_of_file);
 			return (0);
 		}
 		line_added[i] = '\0';
-		line_of_file = ft_strjoin(line_of_file, line_added);
+		line_of_file = ft_strjoin (line_of_file, line_added);
 		if (ft_strchr(line_added, '\n') >= 0)
 			break;
 	}
@@ -46,7 +56,7 @@ char	*ft_read_file(int fd, char *line_of_file)
 }
 char	*get_next_line(int fd)
 {
-	static char *stock;
+	static char	*stock;
 	char		*line;
 	char		*tmp;
 
@@ -60,22 +70,25 @@ char	*get_next_line(int fd)
 	}
 	if (ft_strchr(stock, '\n') >= 0)
 	{
-		line = ft_substr(stock, 0, ft_strchr(stock, '\n'));
-		tmp = ft_substr(stock, ft_strchr(stock, '\n') + 1, ft_stock_len(stock));
+		line = ft_substr(stock, 0,ft_strchr(stock, '\n'));
+		tmp = ft_substr(stock, ft_strchr(stock, '\n') + 1, ft_strlen(stock));
 		free(stock);
+		stock = tmp;
 		return (line);
 	}
-	line = ft_strdup(stock);
+	line = ft_strdub(stock);
 	free(stock);
 	stock = NULL;
 	return (line);
 }
+// int main(int ac, char **av)
+// {
 
-int main(int ac, char **av)
-{
+// 	(void)ac;
+// 	int fd = open(av[1], O_RDONLY);
 
-	(void)ac;
-	int fd = open(av[1], O_RDONLY);
-	printf("%s", get_next_line(fd));
-	return (0);
-}
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	printf("%s", get_next_line(fd));
+// 	return (0);
+// }
