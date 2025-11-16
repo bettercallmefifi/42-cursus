@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: feel-idr <feel-idr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: feel-idr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/15 17:54:26 by feel-idr          #+#    #+#             */
-/*   Updated: 2025/11/16 16:43:07 by feel-idr         ###   ########.fr       */
+/*   Created: 2025/11/16 16:50:13 by feel-idr          #+#    #+#             */
+/*   Updated: 2025/11/16 16:50:16 by feel-idr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
-int	ft_strlen(char *str)
+int	ft_sln(char *str)
 {
 	int	i;
 
@@ -59,8 +59,8 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	len = ft_strlen(s1);
-	allocat = ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char));
+	len = ft_sln(s1);
+	allocat = ft_calloc((ft_sln(s1) + ft_sln(s2) + 1), sizeof(char));
 	if (!s1 || !s2 || !allocat)
 		return (NULL);
 	while (i < len)
@@ -68,7 +68,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		allocat[i] = s1[i];
 		i++;
 	}
-	len = ft_strlen(s2);
+	len = ft_sln(s2);
 	while (j < len)
 		allocat[i++] = s2[j++];
 	allocat[i] = '\0';
@@ -82,7 +82,7 @@ char	*ft_substr(char *s, int start, int end)
 	int		i;
 	int		len;
 
-	len = ft_strlen(s);
+	len = ft_sln(s);
 	i = 0;
 	if (start < len)
 	{
